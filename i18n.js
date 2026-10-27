@@ -6,7 +6,7 @@ window.I18N_EN = {
   'nav.cta':'Get started',
   'lang.aria':'التحويل للعربية', 'lang.label':'ع', 'lang.full':'العربية',
 
-  'hero.eyebrow':'Smart business solutions · built around you',
+  'hero.eyebrow':'Smart business solutions that fit your business',
   'hero.title':'Customers order. AI <span class="hl">replies</span>.<br>You stay in control.',
   'hero.sub':'WIYAK answers your customers on WhatsApp, Instagram and Facebook in their own language, around the clock, and hands them to your team when a person is needed.',
   'hero.cta1':'Get started', 'hero.cta2':'See the bot in action',
