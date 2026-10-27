@@ -16,6 +16,7 @@
   const T = () => window.I18N_JS[lang];
   const tr = k => (lang === 'en' ? window.I18N_EN[k] : AR[k] ?? AR_ATTR[k]) ?? '';
   const langHooks = [];
+  const page = document.body.dataset.page || 'home', sub = page !== 'home';
 
   function applyLang(l, initial){
     lang = l;
@@ -29,7 +30,7 @@
     $$('[data-i18n-attr]').forEach(el => el.dataset.i18nAttr.split(';').forEach(p => {
       const [a, k] = p.split(':'); const v = l === 'en' ? window.I18N_EN[k] : AR_ATTR[k]; if (v != null) el.setAttribute(a, v);
     }));
-    document.title = T().title;
+    document.title = (T().pages || {})[page] || T().title;
     $('meta[name=description]').setAttribute('content', T().desc);
     try { localStorage.setItem('wiyak-lang', l); } catch(e) {}
     const u = new URL(location.href); if (l === 'en') u.searchParams.set('lang','en'); else u.searchParams.delete('lang');
@@ -45,7 +46,7 @@
 
   /* ---------- Nav ---------- */
   const nav = $('#nav');
-  const onScroll = () => nav.classList.toggle('scrolled', scrollY > 40);
+  const onScroll = () => nav.classList.toggle('scrolled', sub || scrollY > 40);
   onScroll(); addEventListener('scroll', onScroll, {passive:true});
   const burger = $('.nav-burger'), menu = $('#mobile-menu');
   const closeMenu = () => { burger.setAttribute('aria-expanded','false'); menu.hidden = true; onScroll(); };
@@ -58,16 +59,19 @@
 
   /* scroll progress, active nav link, mobile sticky CTA */
   const prog = $('.nav-progress'), mcta = $('#m-cta'), hero = $('.hero'), contact = $('#contact');
-  const spy = $$('.nav-links a').map(a => [a, $(a.getAttribute('href'))]);
+  $$('.nav-links a, #mobile-menu a').forEach(a => { if (sub && a.dataset.nav === page){ a.classList.add('active'); a.setAttribute('aria-current', 'page'); } });
+  const spy = sub ? [] : $$('.nav-links a').filter(a => /^#./.test(a.getAttribute('href'))).map(a => [a, $(a.getAttribute('href'))]).filter(([, s]) => s);
   let ticking = false;
   function scrollFx(){
     ticking = false;
     const max = document.documentElement.scrollHeight - innerHeight;
     prog.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
-    let cur = null;
-    spy.forEach(([a, s]) => { if (s.getBoundingClientRect().top < 140) cur = a; });
-    spy.forEach(([a]) => a.classList.toggle('active', a === cur));
-    const show = scrollY > hero.offsetHeight * .7 && contact.getBoundingClientRect().top > innerHeight * .5;
+    if (spy.length){
+      let cur = null;
+      spy.forEach(([a, s]) => { if (s.getBoundingClientRect().top < 140) cur = a; });
+      spy.forEach(([a]) => a.classList.toggle('active', a === cur));
+    }
+    const show = scrollY > (hero ? hero.offsetHeight * .7 : 300) && contact.getBoundingClientRect().top > innerHeight * .5;
     mcta.classList.toggle('show', show); mcta.inert = !show;
   }
   scrollFx();
@@ -130,7 +134,7 @@
     if (reduce) return;
     new IntersectionObserver(([e]) => { if (e.isIntersecting && !run){ run = true; loop(); } else if (!e.isIntersecting){ run = false; cancelAnimationFrame(raf); } }).observe(canvas);
   }
-  ribbon($('.hero-ribbon'), PRESETS.hero);
+  if ($('.hero-ribbon')) ribbon($('.hero-ribbon'), PRESETS.hero);
   $$('.sec-ribbon').forEach(c => ribbon(c, PRESETS.sec));
 
   /* ---------- Chat engine ---------- */
@@ -183,10 +187,11 @@
       }
     })();
   }
-  startHero(); langHooks.push(startHero);
+  if (heroChat){ startHero(); langHooks.push(startHero); }
 
   /* demo tabs */
   const demoChat = $('#demo-chat'), demoTeam = $('#demo-team'), notes = $('#demo-notes');
+  if (demoChat){
   let demoTok = {dead:true}, demoStarted = false, demoKey = 'store';
   function runScn(key){
     demoTok.dead = true; demoTok = {}; demoKey = key;
@@ -206,9 +211,11 @@
   $('#demo-name').textContent = T().scn.store.name;
   new IntersectionObserver(([e], o) => { if (e.isIntersecting){ demoStarted = true; runScn('store'); o.disconnect(); } }, {threshold:.35}).observe($('#demo'));
   langHooks.push(() => { if (demoStarted) runScn(demoKey); else { demoTeam.dataset.empty = T().empty; $('#demo-name').textContent = T().scn.store.name; } });
+  }
 
   /* ---------- Dashboard tabs ---------- */
   const img = $('#dash-img'), cap = $('#dash-cap');
+  if (img){
   let shot = 'home';
   const setCap = () => { const [lbl, c] = T().dash[shot]; cap.textContent = c; img.alt = T().dashAlt + lbl; };
   setCap(); langHooks.push(setCap);
@@ -222,10 +229,11 @@
     shot = k; img.classList.add('swap');
     setTimeout(() => { img.src = `assets/shots/${k}.webp`; setCap(); img.onload = () => img.classList.remove('swap'); }, reduce ? 0 : 220);
   }));
+  }
 
   /* ---------- Pricing toggle ---------- */
   const sw = $('#billing');
-  sw.addEventListener('click', () => {
+  if (sw) sw.addEventListener('click', () => {
     const y = sw.getAttribute('aria-checked') !== 'true';
     sw.setAttribute('aria-checked', String(y));
     $('#lbl-m').classList.toggle('on', !y); $('#lbl-y').classList.toggle('on', y);
@@ -323,7 +331,7 @@
       area.addEventListener('pointerleave', () => { el.style.setProperty('--rx', '0deg'); el.style.setProperty('--ry', '0deg'); });
     };
     $$('[data-tilt3d]').forEach(el => tilt(el, el, 5));
-    tilt($('.hero-phone'), $('.hero'), 10);
+    if (hero) tilt($('.hero-phone'), hero, 10);
   }
 
   /* ---------- Clinic story: light up each step as it scrolls in ---------- */
@@ -332,30 +340,8 @@
   else {
     const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), {rootMargin:'0px 0px -35% 0px'});
     csSteps.forEach(s => io.observe(s));
-    new IntersectionObserver(([e]) => $('#clinic').classList.toggle('live', e.isIntersecting)).observe($('#clinic'));
+    if ($('#clinic')) new IntersectionObserver(([e]) => $('#clinic').classList.toggle('live', e.isIntersecting)).observe($('#clinic'));
   }
-
-  /* ---------- Clinic example: opens as a dropdown under the industries ---------- */
-  const clinic = $('#clinic'), clinicBtn = $('.ind-more');
-  const clinicLabel = () => { clinicBtn.querySelector('span').textContent = clinic.hidden ? tr('in.c.more') : T().clinicLess; };
-  function setClinic(open){
-    const smooth = reduce ? 'auto' : 'smooth';
-    clinicBtn.setAttribute('aria-expanded', String(open));
-    if (open){
-      clinic.hidden = false; clinicLabel();
-      if (!reduce && window.gsap) gsap.fromTo(clinic, {height:0, opacity:0}, {height:'auto', opacity:1, duration:.6, ease:'power2.out', clearProps:'height,opacity', onComplete:() => window.ScrollTrigger && ScrollTrigger.refresh()});
-      else if (window.ScrollTrigger) ScrollTrigger.refresh();
-      setTimeout(() => clinic.scrollIntoView({behavior:smooth}), 80);
-    } else {
-      const done = () => { clinic.hidden = true; clinicLabel(); if (window.ScrollTrigger) ScrollTrigger.refresh(); };
-      clinicBtn.closest('.ind').scrollIntoView({behavior:smooth, block:'center'});
-      if (!reduce && window.gsap) gsap.to(clinic, {height:0, opacity:0, duration:.45, ease:'power2.in', onComplete:() => { done(); gsap.set(clinic, {clearProps:'height,opacity'}); }});
-      else done();
-    }
-  }
-  $$('[data-clinic-toggle]').forEach(b => b.addEventListener('click', () => setClinic(clinic.hidden)));
-  if (location.hash === '#clinic') setClinic(true);
-  langHooks.push(clinicLabel);
 
   /* ---------- GSAP scroll animations ---------- */
   if (!window.gsap || reduce){ $$('.j-step').forEach(s => s.classList.add('on')); return; }
@@ -363,6 +349,7 @@
 
   // hero entrance: whole words rise in (so Arabic letters stay joined)
   const title = $('[data-split]');
+  if (title){
   [...title.childNodes].forEach(n => {
     if (n.nodeType === 1){ if (n.classList.contains('hl')) n.classList.add('w'); return; }
     const frag = document.createDocumentFragment();
@@ -380,6 +367,7 @@
   gsap.to('.fc-tg', {y:-12, duration:3, repeat:-1, yoyo:true, ease:'sine.inOut'});
   gsap.to('.fc-sales', {y:10, duration:3.6, repeat:-1, yoyo:true, ease:'sine.inOut', delay:.5});
   gsap.to('.hero-visual', {yPercent:12, ease:'none', scrollTrigger:{trigger:'.hero', start:'top top', end:'bottom top', scrub:true}});
+  }
 
   // reveals (grouped so siblings stagger)
   ScrollTrigger.batch('[data-reveal]', {start:'top 88%', once:true,
@@ -387,16 +375,18 @@
   gsap.set('[data-reveal]', {opacity:0});
 
   // dashboard: 3D tilt flattens as it scrolls in
-  gsap.fromTo('.browser', {rotateX:22, scale:.92, y:40}, {rotateX:0, scale:1, y:0, ease:'none',
+  if ($('.browser')) gsap.fromTo('.browser', {rotateX:22, scale:.92, y:40}, {rotateX:0, scale:1, y:0, ease:'none',
     scrollTrigger:{trigger:'.browser-wrap', start:'top 95%', end:'top 25%', scrub:.6}});
 
   // journey: progress line fills and steps light up
   const mobile = matchMedia('(max-width:760px)').matches;
   const steps = $$('.j-step');
+  if (steps.length){
   gsap.fromTo('.j-fill', mobile ? {scaleY:0} : {scaleX:0}, {...(mobile ? {scaleY:1} : {scaleX:1}), ease:'none',
     scrollTrigger:{trigger:'#journey-track', start:'top 75%', end:'bottom 55%', scrub:.5,
       onUpdate: s => steps.forEach((st, i) => st.classList.toggle('on', s.progress >= i / steps.length + .02))}});
   gsap.from(steps, {y:30, opacity:0, duration:.8, stagger:.12, ease:'power3.out', scrollTrigger:{trigger:'#journey-track', start:'top 80%', once:true}});
+  }
 
   // CTA symbol gentle float
   gsap.to('.cta-symbol', {y:-14, rotate:-3, duration:3.2, repeat:-1, yoyo:true, ease:'sine.inOut'});

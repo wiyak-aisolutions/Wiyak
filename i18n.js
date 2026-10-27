@@ -31,7 +31,7 @@ window.I18N_EN = {
   'cmp.a5':'Live sales and stock from one screen',
   'mcta.wa':'Chat with us on WhatsApp',
 
-  'in.c.more':'See the clinic example in detail', 'cs.close':'Close the example',
+  'in.c.more':'See the clinic example in detail', 'ft.clinic':'Clinic example',
   'cs.eyebrow':'A detailed example · Dental clinic', 'cs.title':'Running a clinic? Here’s how the system works',
   'cs.sub':'Based on a live system we built for a multi-branch dental center, shown without its name. Names and numbers are illustrative.',
   'cs.1t':'The problem: bookings everywhere',
@@ -194,7 +194,8 @@ window.I18N_JS = {
   ar: {
     title:'ويّاك | حلول أعمال ذكية على مقاس نشاطك',
     desc:'ويّاك Business Solutions: حلول أعمال ذكية على مقاس نشاطك. مساعد ذكي بيرد على عملاءك على واتساب وإنستجرام وفيسبوك 24 ساعة، تنبيهات لفريقك على تليجرام، ولوحة تحكم بتجمع كل حاجة.',
-    empty:'في انتظار أول تنبيه…', clinicLess:'اقفل مثال العيادة',
+    empty:'في انتظار أول تنبيه…',
+    pages:{bot:'شوف البوت شغال | ويّاك', dashboard:'لوحة التحكم | ويّاك', clinic:'مثال العيادة بالتفصيل | ويّاك', pricing:'الباقات والأسعار | ويّاك', faq:'أسئلة وشفافية | ويّاك'},
     dash:{home:['الشاشة الرئيسية','مبيعات اليوم لحظة بلحظة، حالة التشغيل لواتساب وتليجرام والمساعد الذكي، ومبيعات الأسبوع مقارنة باللي فات.'],
       orders:['الطلبات','كل أوردر بالقناة والعميل والفرع والأصناف والإجمالي وطريقة الدفع. غيّر الحالة بضغطة والعميل ياخد رسالة.'],
       stock:['المخزون','المتاح والمحجوز والمباع لكل صنف في كل فرع، وتنبيه للأصناف اللي قربت تخلص، وتضيف توريدات بنفسك.'],
@@ -246,7 +247,8 @@ window.I18N_JS = {
   en: {
     title:'WIYAK | Smart business solutions, built around you',
     desc:'WIYAK Business Solutions: an AI assistant that answers your customers on WhatsApp, Instagram and Facebook around the clock, Telegram alerts for your team, and a dashboard that brings it all together.',
-    empty:'Waiting for the first alert…', clinicLess:'Hide the clinic example',
+    empty:'Waiting for the first alert…',
+    pages:{bot:'See the bot in action | WIYAK', dashboard:'The dashboard | WIYAK', clinic:'Clinic example in detail | WIYAK', pricing:'Plans & pricing | WIYAK', faq:'FAQ & transparency | WIYAK'},
     dash:{home:['Home screen','Today’s sales in real time, live status of WhatsApp, Telegram and the AI assistant, and this week’s sales vs. last week.'],
       orders:['Orders','Every order with channel, customer, branch, items, total and payment method. Change the status in one tap and the customer gets a message.'],
       stock:['Stock','Available, reserved and sold for every item in every branch, low-stock alerts, and add supplies yourself.'],
