@@ -71,7 +71,7 @@ window.I18N_EN = {
   'cs.8t':'Permissions, security and a nightly report',
   'cs.8p':'Each staff member sees only what’s theirs, and branch staff see only their branch. Every change is logged with who made it, and the owner gets a branch report on Telegram every night.',
   'cs.8r1':'Owner · everything', 'cs.8r2':'Call center · bookings & leads', 'cs.8r3':'Branch staff · own branch', 'cs.8r4':'Accountant · finance & reports',
-  'cs.8tt':'Today’s report · 11 PM', 'cs.8t1':'Maadi branch: 9 appointments · 6 attended · 2 no-shows · 1 cancelled', 'cs.8t2':'Revenue 18,400 EGP · Net 15,500 EGP',
+  'cs.8tt':'Today’s report · 11 PM', 'cs.8t1':'Maadi branch: 9 appointments · 6 attended · 2 no-shows · 1 canceled', 'cs.8t2':'Revenue 18,400 EGP · Net 15,500 EGP',
   'cs.8s1':'Encrypted passwords', 'cs.8s2':'New accounts need owner approval', 'cs.8s3':'Activity log for every change', 'cs.8s4':'No double bookings',
   'cs.ctaT':'Pricing depends on your number of branches and what you need',
   'cs.ctaP':'Tell us about your clinic and we’ll send a detailed quote, with no commitment.',
@@ -127,7 +127,7 @@ window.I18N_EN = {
   'sv.4t':'Returning customers', 'sv.4':'Remembers their details, so the next order takes seconds.',
   'sv.5t':'Cash · InstaPay · Visa', 'sv.5':'Cash confirms instantly, InstaPay with a transfer screenshot, Visa with a secure payment link.',
   'sv.6t':'Status messages', 'sv.6':'“Confirmed” → “Out for delivery” → “Delivered” on WhatsApp, without anyone typing.',
-  'sv.7t':'Stock', 'sv.7':'Reserved as soon as the order is logged, turned into sales after payment, returned if cancelled.',
+  'sv.7t':'Stock', 'sv.7':'Reserved as soon as the order is logged, turned into sales after payment, returned if canceled.',
   'sv.8t':'Sheet & activity log', 'sv.8':'Every order in your Google Sheet with the time of each stage, and who changed what, and when.',
 
   'pr.eyebrow':'Plans & pricing', 'pr.title':'Monthly subscription + one-time setup',
@@ -158,8 +158,8 @@ window.I18N_EN = {
 
   'st.eyebrow':'From the first call to go-live', 'st.title':'Setup steps',
   'st.1t':'A WhatsApp message', 'st.1':'We understand your business', 'st.2t':'Contract & setup', 'st.2':'We agree and sign', 'st.3t':'The form', 'st.3':'Products · prices · branches',
-  'st.4t':'System setup', 'st.4':'Bot, dashboard and Telegram', 'st.5t':'Test order', 'st.5':'We try it together', 'st.6t':'Go live', 'st.6':'Real work begins',
-  'st.7t':'One-week follow-up', 'st.7':'We fine-tune anything', 'st.8t':'Monthly report', 'st.8':'Your numbers, clearly',
+  'st.4t':'System setup', 'st.4':'The bot, Telegram and the sheet', 'st.5t':'Test order', 'st.5':'We try it together', 'st.6t':'Go live', 'st.6':'Real work begins',
+  'st.7t':'One-week follow-up', 'st.7':'We fine-tune anything', 'st.8t':'Ongoing support', 'st.8':'We’re with you on WhatsApp',
 
   'fq.eyebrow':'FAQ', 'fq.title':'Things you should know', 'fq.sub':'Straight answers. And if you have another question, send it through the form below.',
   'fq.1q':'Is the AI assistant 100% accurate?', 'fq.1a':'No, and nobody can guarantee that. The assistant never makes up prices, items or appointments, and if it isn’t sure — or it’s a complaint or a medical question — it hands the customer to someone on your team right away.',

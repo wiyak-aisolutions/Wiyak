@@ -665,3 +665,9 @@ html.i18n-pending body{opacity:0}
 }
 
 @media (max-width:760px){body:not([data-page=home]) main>section:first-child{padding-top:120px}}
+
+/* ============ Overall scale: everything 10% smaller on tablet/desktop (phones keep their own sizes) ============ */
+@media (min-width:761px){
+  html{zoom:.9}
+  .hero{min-height:calc(100vh / .9);min-height:calc(100svh / .9)}
+}
