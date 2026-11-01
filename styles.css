@@ -777,6 +777,10 @@ html[dir=rtl] .composer button .ic{transform:scaleX(-1)}
 .bub .chips button:hover{background:#d8f1e9}
 .demo-disclaim{margin-top:12px;max-width:290px;text-align:center;font-size:13px;color:rgba(207,239,231,.7);line-height:1.6}
 .demo-disclaim[hidden]{display:none}
+.tgm .tbtns button{flex:1 1 auto;text-align:center;padding:9px 10px;border-radius:8px;background:#2b5278;color:#fff;font-size:13.5px;cursor:pointer;transition:background .2s;min-height:36px}
+.tgm .tbtns button:hover{background:#3a6a99}
+.tgm .tbtns button:focus-visible{outline:2px solid #5fb7f0;outline-offset:2px}
+.tgm .row.st{color:#7fd6a8;font-weight:600}
 .tabs-sep{align-self:center;font-size:14px;color:rgba(207,239,231,.7);margin-inline:8px 2px}
 body[data-page=home] #demo .tabs-sep{color:var(--muted)}
 .biz-pick{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:-18px 0 30px}
@@ -804,6 +808,19 @@ body[data-page=home] #demo .biz-pick button{color:var(--ink);background:var(--cr
 body[data-page=home] #demo .biz-pick button .ic{color:var(--teal-ink)}
 body[data-page=home] #demo .biz-pick button[aria-checked=true]{background:#fff3f0;border-color:var(--coral)}
 body[data-page=home] #demo .biz-pick button[aria-checked=true] .ic{color:var(--coral)}
+
+
+/* ============ Hero entrance (CSS, so it starts at first paint without waiting for GSAP) ============ */
+@keyframes heroIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.hero-copy>*{animation:heroIn .6s cubic-bezier(.2,.7,.2,1) backwards}
+.hero-copy>:nth-child(2){animation-delay:.08s}
+.hero-copy>:nth-child(3){animation-delay:.16s}
+.hero-copy>:nth-child(4){animation-delay:.24s}
+.hero-copy>:nth-child(5){animation-delay:.3s}
+.hero-copy>:nth-child(6){animation-delay:.36s}
+.hero-visual{animation:heroIn .8s .12s cubic-bezier(.2,.7,.2,1) backwards}
+.hero-visual .float-card{animation:heroIn .5s .45s cubic-bezier(.2,.7,.2,1) backwards}
+@media (prefers-reduced-motion:reduce){.hero-copy>*,.hero-visual,.hero-visual .float-card{animation:none}}
 
 /* ============ Overall scale: everything 10% smaller on tablet/desktop (phones keep their own sizes) ============ */
 @media (min-width:761px){

@@ -179,7 +179,7 @@
   function startHero(){
     heroTok.dead = true; const tok = heroTok = {};
     (async () => {
-      await wait(900);
+      await wait(300);
       while (!tok.dead){
         heroChat.innerHTML = '';
         await play(heroChat, null, T().scn.store.script.filter(m => !m.team).slice(0, 8), tok);
@@ -204,11 +204,45 @@
   const toBottom = () => { demoChat.scrollTop = demoChat.scrollHeight; };
   function liveTeam(a){
     const s = T().scn.live;
-    if (a.type === 'order') return {title: s.orderT + a.id, rows: [...a.lines, a.fulfilment === 'delivery' ? `${s.deliv} · ${a.area}` : s.pick, `${a.payment} · ${a.total}`], btns: s.btns};
-    if (a.type === 'booking') return {icon: 'i-calendar', title: s.bookT + a.id, rows: [...a.lines, `${a.area} · ${a.slot}`, s.atClinic], btns: s.bbtns};
-    return {urgent: true, icon: 'i-users', title: s.handT, rows: [`${s.handR}«${a.last}»`], btns: s.hbtn};
+    if (a.type === 'order') return {title: s.orderT + a.id, rows: [...a.lines, a.fulfilment === 'delivery' ? `${s.deliv} · ${a.area}` : s.pick, `${a.payment} · ${a.total}`]};
+    if (a.type === 'booking') return {icon: 'i-calendar', title: s.bookT + a.id, rows: [...a.lines, `${a.area} · ${a.slot}`, s.atClinic]};
+    return {urgent: true, icon: 'i-users', title: s.handT, rows: [`${s.handR}«${a.last}»`]};
   }
-  function addTeam(a){ const el = teamMsg(liveTeam(a)); demoTeam.appendChild(el); pop(el); while (demoTeam.children.length > 4) demoTeam.firstElementChild.remove(); }
+  // the team's next buttons for a card, given what was already pressed (a.done)
+  function nextActs(a){
+    const done = a.done || [];
+    if (a.type === 'booking') return done.length ? [] : ['bkOk', 'bkMove'];
+    if (a.type === 'handoff') return done.length ? [] : ['hand'];
+    const cash = a.payment === 'كاش' || a.payment === 'Cash';
+    const flow = [cash ? 'accept' : 'pay', a.fulfilment === 'delivery' ? 'out' : 'ready', 'done'];
+    return flow.slice(done.length, done.length + 1);
+  }
+  function teamCard(a){
+    const s = T().scn.live, el = teamMsg(liveTeam(a));
+    (a.done || []).forEach(k => { const r = document.createElement('div'); r.className = 'row st'; r.textContent = s.stx[k]; el.appendChild(r); });
+    const acts = nextActs(a);
+    if (acts.length){
+      const box = document.createElement('div'); box.className = 'tbtns';
+      acts.forEach(k => {
+        const b = document.createElement('button'); b.type = 'button'; b.textContent = s.btn[k];
+        b.addEventListener('click', () => teamPress(a, k, el));
+        box.appendChild(b);
+      });
+      el.appendChild(box);
+    }
+    return el;
+  }
+  // a team press updates the card and sends the customer the matching WhatsApp update
+  async function teamPress(a, k, el){
+    a.done = (a.done || []).concat(k);
+    const fresh = teamCard(a); el.replaceWith(fresh); pop(fresh);
+    const ty = document.createElement('div'); ty.className = 'typing'; ty.innerHTML = '<i></i><i></i><i></i>';
+    demoChat.appendChild(ty); toBottom(); await wait(700); ty.remove();
+    const text = T().scn.live.st[k], bot = {from:'bot', text, time:clock()};
+    live.log.push(bot); live.hist.push({r:'b', t:text}); live.hist = live.hist.slice(-12);
+    if (demoKey === 'live'){ const b = bubble(bot); demoChat.appendChild(b); pop(b); toBottom(); }
+  }
+  function addTeam(a){ const el = teamCard(a); demoTeam.appendChild(el); pop(el); while (demoTeam.children.length > 4) demoTeam.firstElementChild.remove(); }
   function renderLive(){
     const s = T().scn.live.biz[live.biz];
     $('#demo-name').textContent = s.name;
@@ -218,7 +252,7 @@
     hi.insertBefore(chips, hi.querySelector('small'));
     demoChat.appendChild(hi);
     live.log.forEach(m => demoChat.appendChild(bubble(m)));
-    live.team.forEach(a => demoTeam.appendChild(teamMsg(liveTeam(a))));
+    live.team.forEach(a => demoTeam.appendChild(teamCard(a)));
     toBottom();
   }
   async function sendLive(text){
@@ -446,23 +480,8 @@
   if (!window.gsap || reduce){ $$('.j-step').forEach(s => s.classList.add('on')); return; }
   gsap.registerPlugin(ScrollTrigger);
 
-  // hero entrance: whole words rise in (so Arabic letters stay joined)
-  const title = $('[data-split]');
-  if (title){
-  [...title.childNodes].forEach(n => {
-    if (n.nodeType === 1){ if (n.classList.contains('hl')) n.classList.add('w'); return; }
-    const frag = document.createDocumentFragment();
-    n.textContent.split(/(\s+)/).forEach(p => {
-      if (!p) return;
-      if (/^\s+$/.test(p)) frag.append(p); else { const s = document.createElement('span'); s.className = 'w'; s.textContent = p; frag.append(s); }
-    });
-    n.replaceWith(frag);
-  });
-  const tl = gsap.timeline({defaults:{ease:'power3.out'}});
-  tl.from('[data-split] .w', {y:40, opacity:0, duration:.9, stagger:.06})
-    .from('[data-hero]', {y:24, opacity:0, duration:.8, stagger:.12}, '-=.6')
-    .from('.hero-visual .phone', {y:60, opacity:0, rotate:-4, duration:1.1, clearProps:'transform'}, '-=1')
-    .from('[data-float]', {scale:.8, opacity:0, duration:.7, stagger:.15, ease:'back.out(1.7)'}, '-=.5');
+  // hero entrance is pure CSS (styles.css "Hero entrance"): it starts at first paint, before GSAP arrives
+  if ($('.hero')){
   gsap.to('.fc-tg', {y:-12, duration:3, repeat:-1, yoyo:true, ease:'sine.inOut'});
   gsap.to('.fc-sales', {y:10, duration:3.6, repeat:-1, yoyo:true, ease:'sine.inOut', delay:.5});
   gsap.to('.hero-visual', {yPercent:12, ease:'none', scrollTrigger:{trigger:'.hero', start:'top top', end:'bottom top', scrub:true}});
@@ -470,7 +489,7 @@
 
   // reveals (grouped so siblings stagger)
   ScrollTrigger.batch('[data-reveal]', {start:'top 88%', once:true,
-    onEnter: els => gsap.fromTo(els, {y:40, opacity:0}, {y:0, opacity:1, duration:.9, stagger:.09, ease:'power3.out', overwrite:true, clearProps:'transform'})});
+    onEnter: els => gsap.fromTo(els, {y:24, opacity:0}, {y:0, opacity:1, duration:.6, stagger:.07, ease:'power3.out', overwrite:true, clearProps:'transform'})});
   gsap.set('[data-reveal]', {opacity:0});
 
   // dashboard: 3D tilt flattens as it scrolls in
