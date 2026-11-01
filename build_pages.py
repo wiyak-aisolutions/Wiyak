@@ -10,7 +10,7 @@ import re
 SRC = '_src/site.html'
 PAGES = {
     # file: (page id, Arabic <title>, sections in order)
-    'index.html':     ('home',      'ويّاك | حلول أعمال ذكية على مقاس نشاطك', ['top', 'assure', 'why', 'features', 'industries', 'demo', 'pricing', 'calc', 'solutions', 'setup', 'contact']),
+    'index.html':     ('home',      'ويّاك | حلول أعمال ذكية تناسب نشاطك', ['top', 'assure', 'why', 'features', 'industries', 'demo', 'pricing', 'calc', 'solutions', 'setup', 'contact']),
     'bot.html':       ('bot',       'شوف البوت شغال | ويّاك',                 ['demo', 'journey', 'contact']),
     'dashboard.html': ('dashboard', 'لوحة التحكم | ويّاك',                     ['dashboard', 'contact']),
     'clinic.html':    ('clinic',    'مثال العيادة بالتفصيل | ويّاك',           ['clinic', 'contact']),

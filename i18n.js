@@ -223,8 +223,8 @@ window.I18N_EN = {
 /* Strings used only by main.js, in both languages */
 window.I18N_JS = {
   ar: {
-    title:'ويّاك | حلول أعمال ذكية على مقاس نشاطك',
-    desc:'ويّاك Business Solutions: حلول أعمال ذكية على مقاس نشاطك. مساعد ذكي بيرد على عملاءك على واتساب وإنستجرام وفيسبوك 24 ساعة، تنبيهات لفريقك على تليجرام، ولوحة تحكم بتجمع كل حاجة.',
+    title:'ويّاك | حلول أعمال ذكية تناسب نشاطك',
+    desc:'ويّاك Business Solutions: حلول أعمال ذكية تناسب نشاطك. مساعد ذكي بيرد على عملاءك على واتساب وإنستجرام وفيسبوك 24 ساعة، تنبيهات لفريقك على تليجرام، ولوحة تحكم بتجمع كل حاجة.',
     empty:'في انتظار أول تنبيه…',
     pages:{bot:'شوف البوت شغال | ويّاك', dashboard:'لوحة التحكم | ويّاك', clinic:'مثال العيادة بالتفصيل | ويّاك', pricing:'الباقات والأسعار | ويّاك', faq:'أسئلة وشفافية | ويّاك'},
     dash:{home:['الشاشة الرئيسية','مبيعات اليوم لحظة بلحظة، حالة التشغيل لواتساب وتليجرام والمساعد الذكي، ومبيعات الأسبوع مقارنة باللي فات.'],
@@ -291,7 +291,7 @@ window.I18N_JS = {
     }
   },
   en: {
-    title:'WIYAK | Smart business solutions, built around you',
+    title:'WIYAK | Smart business solutions that fit your business',
     desc:'WIYAK Business Solutions: an AI assistant that answers your customers on WhatsApp, Instagram and Facebook around the clock, Telegram alerts for your team, and a dashboard that brings it all together.',
     empty:'Waiting for the first alert…',
     pages:{bot:'See the bot in action | WIYAK', dashboard:'The dashboard | WIYAK', clinic:'Clinic example in detail | WIYAK', pricing:'Plans & pricing | WIYAK', faq:'FAQ & transparency | WIYAK'},
