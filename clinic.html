@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=21">
+<link rel="stylesheet" href="styles.css?v=36">
 <script>/* set language before first paint to avoid a flash */
 (function(){var q=new URLSearchParams(location.search).get('lang'),s;try{s=localStorage.getItem('wiyak-lang')}catch(e){}var l=q||s;if(l==='en'){document.documentElement.lang='en';document.documentElement.dir='ltr';document.documentElement.classList.add('i18n-pending')}})();
 </script>
@@ -81,10 +81,10 @@
     </a>
     <nav class="nav-links" data-i18n-attr="aria-label:nav.label" aria-label="القائمة الرئيسية">
       <a href="index.html#features" data-nav="home" data-i18n="nav.features">هتاخد إيه</a>
-      <a href="bot.html" data-nav="bot" data-i18n="nav.demo">شوف البوت</a>
-      <a href="dashboard.html" data-nav="dashboard" data-i18n="nav.dashboard">لوحة التحكم</a>
       <a href="index.html#industries" data-nav="home" data-i18n="nav.industries">القطاعات</a>
-      <a href="pricing.html" data-nav="pricing" data-i18n="nav.pricing">الأسعار</a>
+      <a href="index.html#demo" data-nav="home" data-i18n="nav.demo">شوف البوت</a>
+      <a href="index.html#pricing" data-nav="home" data-i18n="nav.pricing">الأسعار</a>
+      <a href="dashboard.html" data-nav="dashboard" data-i18n="nav.dashboard">لوحة التحكم</a>
       <a href="faq.html" data-nav="faq" data-i18n="nav.faq">أسئلة</a>
     </nav>
     <button class="lang-btn" type="button" data-lang-toggle data-i18n-attr="aria-label:lang.aria" aria-label="Switch to English"><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg><span data-i18n="lang.label">EN</span></button>
@@ -94,7 +94,7 @@
     <button class="nav-burger" data-i18n-attr="aria-label:nav.open" aria-label="فتح القائمة" aria-expanded="false" aria-controls="mobile-menu"><svg class="ic" aria-hidden="true"><use href="#i-menu"/></svg></button>
   </div>
   <div class="mobile-menu" id="mobile-menu" hidden>
-    <a href="index.html#features" data-nav="home" data-i18n="nav.features">هتاخد إيه</a><a href="bot.html" data-nav="bot" data-i18n="nav.demo">شوف البوت</a><a href="dashboard.html" data-nav="dashboard" data-i18n="nav.dashboard">لوحة التحكم</a><a href="index.html#industries" data-nav="home" data-i18n="nav.industries">القطاعات</a><a href="pricing.html" data-nav="pricing" data-i18n="nav.pricing">الأسعار</a><a href="faq.html" data-nav="faq" data-i18n="nav.faq">أسئلة</a>
+    <a href="index.html#features" data-nav="home" data-i18n="nav.features">هتاخد إيه</a><a href="index.html#industries" data-nav="home" data-i18n="nav.industries">القطاعات</a><a href="index.html#demo" data-nav="home" data-i18n="nav.demo">شوف البوت</a><a href="index.html#pricing" data-nav="home" data-i18n="nav.pricing">الأسعار</a><a href="dashboard.html" data-nav="dashboard" data-i18n="nav.dashboard">لوحة التحكم</a><a href="faq.html" data-nav="faq" data-i18n="nav.faq">أسئلة</a>
     <button class="mm-lang" type="button" data-lang-toggle><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg><span data-i18n="lang.full">English</span></button>
     <a class="btn btn-coral mm-cta" href="#contact"><span data-i18n="nav.cta">ابدأ معانا</span></a>
   </div>
@@ -109,7 +109,7 @@
   <div class="wrap">
     <div class="sec-head light" data-reveal>
       <div class="eyebrow eyebrow-dark"><svg class="ic" aria-hidden="true"><use href="#i-steth"/></svg><span data-i18n="cs.eyebrow">مثال بالتفصيل · عيادة أسنان</span></div>
-      <h2 data-i18n="cs.title">لو عندك عيادة… النظام هيشتغل كده</h2>
+      <h1 data-i18n="cs.title">لو عندك عيادة، النظام هيشتغل كده</h1>
       <p data-i18n="cs.sub">مأخوذ من نظام شغّال فعلًا لمركز أسنان بأكتر من فرع، من غير اسمه. الأسماء والأرقام للتوضيح.</p>
     </div>
 
@@ -130,7 +130,7 @@
 
       <!-- 2 idea -->
       <li class="cs-step">
-        <div class="cs-text"><span class="cs-n">02</span><h3 data-i18n="cs.2t">الفكرة: كل القنوات في مكان واحد</h3><p data-i18n="cs.2p">أي حجز، من واتساب أو التليفون أو الإعلانات، بيعدّي على المساعد الذكي اللي بيتأكد إن الميعاد متاح ويمنع التكرار. ميعاد واحد لكل مريض، ورؤية واحدة لكل الفروع.</p></div>
+        <div class="cs-text"><span class="cs-n">02</span><h3 data-i18n="cs.2t">الفكرة: كل القنوات في مكان واحد</h3><p data-i18n="cs.2p">أي حجز، من واتساب أو التليفون أو الإعلانات، بيعدّي على المساعد الذكي اللي بيتأكد إن الميعاد متاح ويمنع التكرار. ميعاد واحد لكل مريض، وكل الفروع قدامك.</p></div>
         <div class="cs-vis glass cs-flow" data-tilt3d>
           <small data-i18n="cs.2in">الحجز بييجي من</small>
           <div class="cs-chips"><span data-i18n="m.wa">واتساب</span><span data-i18n="cs.2i2">التليفون</span><span data-i18n="cs.2i3">الموقع والإعلانات</span></div>
@@ -181,7 +181,7 @@
 
       <!-- 6 automatic messages -->
       <li class="cs-step">
-        <div class="cs-text"><span class="cs-n">06</span><h3 data-i18n="cs.6t">رسائل تلقائية… مفيش مريض ينسى ميعاده</h3><p data-i18n="cs.6p">رسائل بقوالب معتمدة من واتساب بتوصل للمريض لوحدها، حتى لو مكلّمش البوت من أيام.</p></div>
+        <div class="cs-text"><span class="cs-n">06</span><h3 data-i18n="cs.6t">تذكير تلقائي قبل كل ميعاد</h3><p data-i18n="cs.6p">رسائل بقوالب معتمدة من واتساب بتوصل للمريض لوحدها، حتى لو مكلّمش البوت من أيام.</p></div>
         <div class="cs-vis glass" data-tilt3d>
           <ol class="cs-timeline">
             <li><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg><div><b data-i18n="cs.6a">لما الحجز يتأكد</b><span data-i18n="cs.6ad">العنوان ولوكيشن الفرع وتليفونه</span></div></li>
@@ -310,6 +310,7 @@
           <label class="chip-opt"><input type="checkbox" name="need" value="telegram"><span><svg class="ic" aria-hidden="true"><use href="#i-send"/></svg><b data-i18n="fm.n5">تنبيهات تليجرام للفريق</b></span></label>
           <label class="chip-opt"><input type="checkbox" name="need" value="dashboard"><span><svg class="ic" aria-hidden="true"><use href="#i-dash"/></svg><b data-i18n="fm.n6">لوحة تحكم وتقارير</b></span></label>
           <label class="chip-opt"><input type="checkbox" name="need" value="stock"><span><svg class="ic" aria-hidden="true"><use href="#i-box"/></svg><b data-i18n="fm.n7">مخزون وفروع</b></span></label>
+          <label class="chip-opt"><input type="checkbox" name="need" value="automation"><span><svg class="ic" aria-hidden="true"><use href="#i-zap"/></svg><b data-i18n="fm.nAuto">أتمتة الشغل الداخلي</b></span></label>
           <label class="chip-opt"><input type="checkbox" name="need" value="full"><span><svg class="ic" aria-hidden="true"><use href="#i-layers"/></svg><b data-i18n="fm.n8">النظام كامل</b></span></label>
           <label class="chip-opt"><input type="checkbox" name="need" value="unsure"><span><svg class="ic" aria-hidden="true"><use href="#i-help"/></svg><b data-i18n="fm.n9">مش متأكد · محتاج استشارة</b></span></label>
         </div>
@@ -354,7 +355,7 @@
 <footer class="footer">
   <div class="wrap foot-in">
     <img src="assets/brand/web/02_Horizontal_Logo_ForDark.webp" alt="ويّاك WIYAK Business Solutions" width="200" height="47" loading="lazy">
-    <nav data-i18n-attr="aria-label:ft.aria" aria-label="روابط الفوتر"><a href="index.html#features" data-i18n="nav.features">هتاخد إيه</a><a href="bot.html" data-i18n="nav.demo">شوف البوت</a><a href="clinic.html" data-i18n="ft.clinic">مثال العيادة</a><a href="pricing.html" data-i18n="nav.pricing">الأسعار</a><a href="faq.html" data-i18n="nav.faq">أسئلة</a><button type="button" class="foot-lang" data-lang-toggle data-i18n="lang.full">English</button></nav>
+    <nav data-i18n-attr="aria-label:ft.aria" aria-label="روابط الفوتر"><a href="index.html#features" data-i18n="nav.features">هتاخد إيه</a><a href="bot.html" data-i18n="nav.demo">شوف البوت</a><a href="clinic.html" data-i18n="ft.clinic">مثال العيادة</a><a href="index.html#pricing" data-i18n="nav.pricing">الأسعار</a><a href="faq.html" data-i18n="nav.faq">أسئلة</a><button type="button" class="foot-lang" data-lang-toggle data-i18n="lang.full">English</button></nav>
     <div class="foot-social">
       <a href="https://www.instagram.com/wiyakegy/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="ic" aria-hidden="true"><use href="#i-insta"/></svg></a>
       <a href="https://www.facebook.com/wiyakbusiesssolutions/" target="_blank" rel="noopener" aria-label="Facebook"><svg class="ic" aria-hidden="true" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
@@ -372,7 +373,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="i18n.js?v=14"></script>
-<script src="main.js?v=9"></script>
+<script src="i18n.js?v=20"></script>
+<script src="main.js?v=14"></script>
 </body>
 </html>

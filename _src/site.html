@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=21">
+<link rel="stylesheet" href="styles.css?v=36">
 <script>/* set language before first paint to avoid a flash */
 (function(){var q=new URLSearchParams(location.search).get('lang'),s;try{s=localStorage.getItem('wiyak-lang')}catch(e){}var l=q||s;if(l==='en'){document.documentElement.lang='en';document.documentElement.dir='ltr';document.documentElement.classList.add('i18n-pending')}})();
 </script>
@@ -81,10 +81,10 @@
     </a>
     <nav class="nav-links" data-i18n-attr="aria-label:nav.label" aria-label="القائمة الرئيسية">
       <a href="index.html#features" data-nav="home" data-i18n="nav.features">هتاخد إيه</a>
-      <a href="bot.html" data-nav="bot" data-i18n="nav.demo">شوف البوت</a>
-      <a href="dashboard.html" data-nav="dashboard" data-i18n="nav.dashboard">لوحة التحكم</a>
       <a href="index.html#industries" data-nav="home" data-i18n="nav.industries">القطاعات</a>
-      <a href="pricing.html" data-nav="pricing" data-i18n="nav.pricing">الأسعار</a>
+      <a href="index.html#demo" data-nav="home" data-i18n="nav.demo">شوف البوت</a>
+      <a href="index.html#pricing" data-nav="home" data-i18n="nav.pricing">الأسعار</a>
+      <a href="dashboard.html" data-nav="dashboard" data-i18n="nav.dashboard">لوحة التحكم</a>
       <a href="faq.html" data-nav="faq" data-i18n="nav.faq">أسئلة</a>
     </nav>
     <button class="lang-btn" type="button" data-lang-toggle data-i18n-attr="aria-label:lang.aria" aria-label="Switch to English"><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg><span data-i18n="lang.label">EN</span></button>
@@ -94,7 +94,7 @@
     <button class="nav-burger" data-i18n-attr="aria-label:nav.open" aria-label="فتح القائمة" aria-expanded="false" aria-controls="mobile-menu"><svg class="ic" aria-hidden="true"><use href="#i-menu"/></svg></button>
   </div>
   <div class="mobile-menu" id="mobile-menu" hidden>
-    <a href="index.html#features" data-nav="home" data-i18n="nav.features">هتاخد إيه</a><a href="bot.html" data-nav="bot" data-i18n="nav.demo">شوف البوت</a><a href="dashboard.html" data-nav="dashboard" data-i18n="nav.dashboard">لوحة التحكم</a><a href="index.html#industries" data-nav="home" data-i18n="nav.industries">القطاعات</a><a href="pricing.html" data-nav="pricing" data-i18n="nav.pricing">الأسعار</a><a href="faq.html" data-nav="faq" data-i18n="nav.faq">أسئلة</a>
+    <a href="index.html#features" data-nav="home" data-i18n="nav.features">هتاخد إيه</a><a href="index.html#industries" data-nav="home" data-i18n="nav.industries">القطاعات</a><a href="index.html#demo" data-nav="home" data-i18n="nav.demo">شوف البوت</a><a href="index.html#pricing" data-nav="home" data-i18n="nav.pricing">الأسعار</a><a href="dashboard.html" data-nav="dashboard" data-i18n="nav.dashboard">لوحة التحكم</a><a href="faq.html" data-nav="faq" data-i18n="nav.faq">أسئلة</a>
     <button class="mm-lang" type="button" data-lang-toggle><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg><span data-i18n="lang.full">English</span></button>
     <a class="btn btn-coral mm-cta" href="#contact"><span data-i18n="nav.cta">ابدأ معانا</span></a>
   </div>
@@ -110,11 +110,11 @@
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <div class="eyebrow eyebrow-dark" data-hero><span class="dot-live"></span> <span data-i18n="hero.eyebrow">حلول أعمال ذكية تناسب نشاطك</span></div>
-      <h1 class="hero-title" data-split data-i18n="hero.title" data-html>عميلك يطلب، والذكاء الاصطناعي <span class="hl">يرد</span>…<br>وإنت متابع كل حاجة</h1>
+      <h1 class="hero-title" data-split data-i18n="hero.title" data-html>عميلك يطلب، <span class="w nw">والذكاء الاصطناعي</span> <span class="hl">يرد</span>…<br>وإنت متابع كل حاجة</h1>
       <p class="hero-sub" data-hero data-i18n="hero.sub">ويّاك بيرد على عملاءك على واتساب وإنستجرام وفيسبوك بلغتهم، 24 ساعة، ويحوّلهم لفريقك لما يحتاجوا إنسان.</p>
       <div class="hero-ctas" data-hero>
         <a class="btn btn-coral btn-lg magnetic" href="#contact"><span data-i18n="hero.cta1">ابدأ معانا</span></a>
-        <a class="btn btn-ghost btn-lg" href="bot.html"><span data-i18n="hero.cta2">شوف البوت شغال</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-ghost btn-lg" href="index.html#demo"><span data-i18n="hero.cta2">شوف البوت شغال</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
       <ul class="hero-trust" data-hero>
         <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="hero.t1">من غير أي التزام</span></li>
@@ -153,13 +153,25 @@
 </section>
 
 
+<!-- ============ ASSURANCE STRIP ============ -->
+<section class="assure" id="assure" data-i18n-attr="aria-label:as.aria" aria-label="ليه تطمن لويّاك">
+  <div class="wrap">
+    <ul class="as-list" data-reveal>
+      <li><span class="as-ic"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg></span><div><b data-i18n="as.1t">ربط رسمي من Meta</b><span data-i18n="as.1">الربط الرسمي لواتساب بيزنس، مش برامج خارجية</span></div></li>
+      <li><span class="as-ic"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg></span><div><b data-i18n="as.2t">رقمك في أمان</b><span data-i18n="as.2">مفيش حظر بسبب برامج غير رسمية</span></div></li>
+      <li><span class="as-ic"><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg></span><div><b data-i18n="as.3t">بياناتك ملكك</b><span data-i18n="as.3">الشيت والحسابات باسمك إنت</span></div></li>
+      <li><span class="as-ic"><svg class="ic" aria-hidden="true"><use href="#i-wallet"/></svg></span><div><b data-i18n="as.4t">فلوسك لحسابك</b><span data-i18n="as.4">إنستاباي والفيزا بيدخلوا حسابك على طول</span></div></li>
+    </ul>
+  </div>
+</section>
+
 <!-- ============ BEFORE / AFTER ============ -->
 <section class="section soft compare" id="why">
   <div class="wrap">
     <div class="sec-head" data-reveal>
-      <div class="eyebrow" data-i18n="cmp.eyebrow">الفرق اللي هتحسه</div>
-      <h2 data-i18n="cmp.title">من فوضى الرسائل… لنظام شغال لوحده</h2>
-      <p data-i18n="cmp.sub">نفس عملائك ونفس فريقك، بس الشغل ماشي بنظام.</p>
+      <div class="eyebrow" data-i18n="cmp.eyebrow">قبل وبعد</div>
+      <h2 data-i18n="cmp.title">نفس العملاء ونفس الفريق، بس الشغل ماشي بنظام</h2>
+      <p data-i18n="cmp.sub">الفرق في يوم الشغل العادي:</p>
     </div>
     <div class="cmp-grid">
       <div data-tilt3d class="cmp cmp-before" data-reveal>
@@ -176,10 +188,10 @@
         <h3 class="cmp-tag"><img src="assets/brand/web/03_Symbol_W.webp" alt="" width="46" height="24"><span data-i18n="cmp.aT">مع ويّاك</span></h3>
         <ul>
           <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="cmp.a1">رد فوري 24/7 بالمصري، نص أو فويس</span></li>
-          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="cmp.a2">كل أوردر متسجل ومتراجع، ومفيش حاجة بتضيع</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="cmp.a2">كل أوردر متسجل ومتراجع</span></li>
           <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="cmp.a3">الإجمالي والتوصيل أوتوماتيك حسب المنطقة</span></li>
           <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="cmp.a4">تنبيه تليجرام لفريقك بأزرار جاهزة في نفس اللحظة</span></li>
-          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="cmp.a5">مبيعاتك ومخزونك لحظة بلحظة من شاشة واحدة</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="cmp.a5">مبيعاتك ومخزونك لحظة بلحظة</span></li>
         </ul>
       </div>
     </div>
@@ -235,13 +247,22 @@
   <div class="wrap">
     <div class="sec-head light" data-reveal>
       <div class="eyebrow eyebrow-dark" data-i18n="d.eyebrow">شوف البوت شغال</div>
-      <h2 data-i18n="d.title">محادثة عادية… وفريقك بيتابع من تليجرام</h2>
-      <p data-i18n="d.sub">اختار سيناريو وشوف اللي العميل بيشوفه، واللي فريقك بيستلمه في نفس اللحظة.</p>
+      <h2 data-i18n="d.title">محادثة عادية، وفريقك بيتابع من تليجرام</h2>
+      <p data-i18n="d.sub">اكتب للبوت كأنك عميل وشوف تنبيه فريقك بيوصل على تليجرام، أو اتفرّج على سيناريو جاهز.</p>
     </div>
     <div class="tabs" role="tablist" data-i18n-attr="aria-label:d.tabsAria" aria-label="سيناريوهات المحادثة" data-reveal>
-      <button role="tab" aria-selected="true" data-scn="store" class="tab"><svg class="ic" aria-hidden="true"><use href="#i-cake"/></svg><span data-i18n="d.t1">محل حلويات</span></button>
+      <button role="tab" aria-selected="true" data-scn="live" class="tab tab-live"><svg class="ic" aria-hidden="true"><use href="#i-msg"/></svg><span data-i18n="d.t0">جرّبه بنفسك</span></button>
+      <span class="tabs-sep" data-i18n="d.or">أو اتفرّج على سيناريو جاهز:</span>
+      <button role="tab" aria-selected="false" data-scn="store" class="tab"><svg class="ic" aria-hidden="true"><use href="#i-cake"/></svg><span data-i18n="d.t1">محل حلويات</span></button>
       <button role="tab" aria-selected="false" data-scn="clinic" class="tab"><svg class="ic" aria-hidden="true"><use href="#i-steth"/></svg><span data-i18n="d.t2">عيادة أسنان</span></button>
       <button role="tab" aria-selected="false" data-scn="complaint" class="tab"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg><span data-i18n="d.t3">شكوى · تحويل لإنسان</span></button>
+    </div>
+    <div class="biz-pick" id="biz-pick" role="radiogroup" data-i18n-attr="aria-label:d.pick" aria-label="جرّب على">
+      <span data-i18n="d.pick">جرّب على:</span>
+      <button type="button" role="radio" aria-checked="true" data-biz="sweets"><svg class="ic" aria-hidden="true"><use href="#i-cake"/></svg><span data-i18n="d.b1">حلويات</span></button>
+      <button type="button" role="radio" aria-checked="false" data-biz="clinic"><svg class="ic" aria-hidden="true"><use href="#i-steth"/></svg><span data-i18n="d.b2">عيادة أسنان</span></button>
+      <button type="button" role="radio" aria-checked="false" data-biz="pharmacy"><svg class="ic" aria-hidden="true"><use href="#i-pill"/></svg><span data-i18n="d.b3">صيدلية</span></button>
+      <button type="button" role="radio" aria-checked="false" data-biz="fashion"><svg class="ic" aria-hidden="true"><use href="#i-bag"/></svg><span data-i18n="d.b4">محل ملابس</span></button>
     </div>
     <div class="demo-grid" data-reveal>
       <div class="demo-col">
@@ -249,7 +270,12 @@
         <div class="phone phone-demo">
           <div class="phone-top"><img src="assets/brand/web/03_Symbol_W.webp" alt="" class="phone-avatar"><div><b id="demo-name">المتجر</b><small data-i18n="chat.online">متصل</small></div></div>
           <div class="phone-body" id="demo-chat" aria-live="polite"></div>
+          <form class="composer" id="demo-form" hidden>
+            <input id="demo-input" type="text" maxlength="300" autocomplete="off" data-i18n-attr="placeholder:d.ph;aria-label:d.ph" placeholder="اكتب رسالتك…" aria-label="اكتب رسالتك…">
+            <button type="submit" data-i18n-attr="aria-label:d.send" aria-label="إرسال"><svg class="ic" aria-hidden="true"><use href="#i-send"/></svg></button>
+          </form>
         </div>
+        <p class="demo-disclaim" id="demo-disclaim" data-i18n="d.disclaim" hidden>محل تجريبي وأسعار وهمية. متكتبش بيانات حقيقية.</p>
       </div>
       <div class="demo-col">
         <div class="demo-label" data-i18n="d.l2">اللي فريقك بيستلمه · تليجرام</div>
@@ -298,9 +324,9 @@
 <section class="section soft" id="industries">
   <div class="wrap">
     <div class="sec-head" data-reveal>
-      <div class="eyebrow" data-i18n="in.eyebrow">بيتفصّل على شغلك</div>
-      <h2 data-i18n="in.title">مش لنوع واحد من الشغل… بيتفصّل على نشاطك</h2>
-      <p data-i18n="in.sub">مفيش قالب جاهز بنركّبه ونمشي. نفس المحرك، واللي بيتغيّر هو الرحلة والمصطلحات والصفحات: أوردرات عند المطعم، مواعيد عند العيادة، روشتات عند الصيدلية. والقطاعات دي أمثلة: أي نشاط بيكلّم عملاءه على الرسائل نقدر نبنيله.</p>
+      <div class="eyebrow" data-i18n="in.eyebrow">القطاعات</div>
+      <h2 data-i18n="in.title">بيتفصّل على نشاطك</h2>
+      <p data-i18n="in.sub">نفس النظام، واللي بيتغيّر هو رحلة العميل والكلام والشاشات: أوردرات للمطعم، مواعيد للعيادة، روشتات للصيدلية. ودي أمثلة، أي نشاط بيكلّم عملاءه على الرسائل ينفع.</p>
     </div>
     <div class="ind-grid">
       <article data-tilt3d class="ind spot" data-reveal><div class="ind-ic"><svg class="ic" aria-hidden="true"><use href="#i-steth"/></svg></div><h3 data-i18n="in.c.t">عيادات ومراكز طبية</h3><ul data-i18n="in.c.l" data-html><li>حجز وتعديل وإلغاء المواعيد</li><li>تذكير قبل الميعاد</li><li>الخدمات والأسعار والدكاترة</li><li>تحويل الحالات للسكرتارية</li></ul><a class="ind-more" href="clinic.html"><span data-i18n="in.c.more">شوف مثال العيادة بالتفصيل</span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></article>
@@ -318,13 +344,56 @@
   </div>
 </section>
 
+<!-- ============ OTHER SOLUTIONS ============ -->
+<section class="section dark-sec solutions" id="solutions">
+  <canvas class="sec-ribbon" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="sec-head light" data-reveal>
+      <div class="eyebrow eyebrow-dark" data-i18n="sol.eyebrow">مش بوت بس</div>
+      <h2 data-i18n="sol.title">وغير البوت… بنبني الحل اللي نشاطك محتاجه</h2>
+      <p data-i18n="sol.sub">نفس الأدوات اللي بتشغّل البوت، بنستخدمها في أي شغل متكرر أو بيانات متفرقة عندك. كل حل بعرض سعر حسب احتياجك.</p>
+    </div>
+    <div class="sol-grid">
+      <article class="sol glass" data-reveal>
+        <div class="sol-ic"><svg class="ic" aria-hidden="true"><use href="#i-chart"/></svg></div>
+        <h3 data-i18n="sol.1.t">لوحات تحكم وتقارير</h3>
+        <p data-i18n="sol.1.p">مبيعاتك ومصاريفك ومخزونك قدامك في مكان واحد، حتى من غير بوت.</p>
+        <ul><li data-i18n="sol.1.b1">لوحة مربوطة بالشيت أو البرنامج اللي عندك</li><li data-i18n="sol.1.b2">تقرير يومي أو أسبوعي يوصلك على تليجرام</li><li data-i18n="sol.1.b3">صلاحيات لكل موظف وكل فرع</li></ul>
+        <div class="sol-foot">
+          <a class="sol-link" href="dashboard.html"><span data-i18n="sol.1.link">شوف لوحة التحكم</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-ghost" href="#contact" data-need="dashboard" data-i18n="sol.cta">اطلب عرض سعر</a>
+        </div>
+      </article>
+      <article class="sol glass" data-reveal>
+        <div class="sol-ic"><svg class="ic" aria-hidden="true"><use href="#i-zap"/></svg></div>
+        <h3 data-i18n="sol.2.t">أتمتة الشغل الداخلي</h3>
+        <p data-i18n="sol.2.p">أي شغل بيتعمل بالإيد كل يوم، نخليه يتعمل لوحده.</p>
+        <ul><li data-i18n="sol.2.b1">فواتير وتذكير باللي عليهم فلوس</li><li data-i18n="sol.2.b2">حضور وانصراف وإجازات على تليجرام</li><li data-i18n="sol.2.b3">ربط برامجك ببعض بدل النقل بالإيد</li></ul>
+        <div class="sol-foot">
+          <a class="btn btn-ghost" href="#contact" data-need="automation" data-i18n="sol.cta">اطلب عرض سعر</a>
+        </div>
+      </article>
+      <article class="sol glass" data-reveal>
+        <div class="sol-ic"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg></div>
+        <h3 data-i18n="sol.3.t">نظام حجوزات</h3>
+        <p data-i18n="sol.3.p">حجز وتأكيد وتذكير، من غير ما حد يمسك دفتر المواعيد.</p>
+        <ul><li data-i18n="sol.3.b1">حجز على واتساب بمواعيد متاحة فعلًا</li><li data-i18n="sol.3.b2">تذكير قبل الميعاد وتأكيد أو إلغاء بضغطة</li><li data-i18n="sol.3.b3">جدول لكل دكتور أو موظف أو فرع</li></ul>
+        <div class="sol-foot">
+          <a class="sol-link" href="clinic.html"><span data-i18n="sol.3.link">شوف مثال العيادة</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-ghost" href="#contact" data-need="booking" data-i18n="sol.cta">اطلب عرض سعر</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- ============ CLINIC CASE STUDY ============ -->
 <section class="section dark-sec clinic" id="clinic">
   <div class="orbs" aria-hidden="true"><i></i><i></i><i></i></div>
   <div class="wrap">
     <div class="sec-head light" data-reveal>
       <div class="eyebrow eyebrow-dark"><svg class="ic" aria-hidden="true"><use href="#i-steth"/></svg><span data-i18n="cs.eyebrow">مثال بالتفصيل · عيادة أسنان</span></div>
-      <h2 data-i18n="cs.title">لو عندك عيادة… النظام هيشتغل كده</h2>
+      <h2 data-i18n="cs.title">لو عندك عيادة، النظام هيشتغل كده</h2>
       <p data-i18n="cs.sub">مأخوذ من نظام شغّال فعلًا لمركز أسنان بأكتر من فرع، من غير اسمه. الأسماء والأرقام للتوضيح.</p>
     </div>
 
@@ -345,7 +414,7 @@
 
       <!-- 2 idea -->
       <li class="cs-step">
-        <div class="cs-text"><span class="cs-n">02</span><h3 data-i18n="cs.2t">الفكرة: كل القنوات في مكان واحد</h3><p data-i18n="cs.2p">أي حجز، من واتساب أو التليفون أو الإعلانات، بيعدّي على المساعد الذكي اللي بيتأكد إن الميعاد متاح ويمنع التكرار. ميعاد واحد لكل مريض، ورؤية واحدة لكل الفروع.</p></div>
+        <div class="cs-text"><span class="cs-n">02</span><h3 data-i18n="cs.2t">الفكرة: كل القنوات في مكان واحد</h3><p data-i18n="cs.2p">أي حجز، من واتساب أو التليفون أو الإعلانات، بيعدّي على المساعد الذكي اللي بيتأكد إن الميعاد متاح ويمنع التكرار. ميعاد واحد لكل مريض، وكل الفروع قدامك.</p></div>
         <div class="cs-vis glass cs-flow" data-tilt3d>
           <small data-i18n="cs.2in">الحجز بييجي من</small>
           <div class="cs-chips"><span data-i18n="m.wa">واتساب</span><span data-i18n="cs.2i2">التليفون</span><span data-i18n="cs.2i3">الموقع والإعلانات</span></div>
@@ -396,7 +465,7 @@
 
       <!-- 6 automatic messages -->
       <li class="cs-step">
-        <div class="cs-text"><span class="cs-n">06</span><h3 data-i18n="cs.6t">رسائل تلقائية… مفيش مريض ينسى ميعاده</h3><p data-i18n="cs.6p">رسائل بقوالب معتمدة من واتساب بتوصل للمريض لوحدها، حتى لو مكلّمش البوت من أيام.</p></div>
+        <div class="cs-text"><span class="cs-n">06</span><h3 data-i18n="cs.6t">تذكير تلقائي قبل كل ميعاد</h3><p data-i18n="cs.6p">رسائل بقوالب معتمدة من واتساب بتوصل للمريض لوحدها، حتى لو مكلّمش البوت من أيام.</p></div>
         <div class="cs-vis glass" data-tilt3d>
           <ol class="cs-timeline">
             <li><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg><div><b data-i18n="cs.6a">لما الحجز يتأكد</b><span data-i18n="cs.6ad">العنوان ولوكيشن الفرع وتليفونه</span></div></li>
@@ -487,7 +556,7 @@
     <div class="sec-head light" data-reveal>
       <div class="eyebrow eyebrow-dark" data-i18n="pr.eyebrow">الباقات والأسعار</div>
       <h2 data-i18n="pr.title">اشتراك شهري + تجهيز مرة واحدة</h2>
-      <p data-i18n="pr.sub">الأسعار شاملة تكلفة المساعد الذكي في حدود الباقة. ميتا بتدي كل رقم 1000 رسالة رد مجانية في الشهر، وبعدها بتتحاسب بالرسالة على حسابك مباشرة، ومعاها رسائل التأكيد والتذكير. إحنا مش بناخد عليها أي نسبة. سارية من أكتوبر 2026 وثابتة 6 شهور من تاريخ التعاقد.</p>
+      <p data-i18n="pr.sub">الأسعار شاملة تكلفة المساعد الذكي في حدود الباقة، وثابتة 6 شهور من تاريخ التعاقد.</p>
     </div>
     <div class="billing" data-reveal>
       <span id="lbl-m" class="on" data-i18n="pr.monthly">شهري</span>
@@ -545,6 +614,7 @@
     </div>
     <p class="annual-note" id="annual-note" hidden data-i18n="pr.annualNote">السعر السنوي = سعر الشهر × 10 ÷ 12. التجهيز بيتدفع مرة واحدة زي ما هو.</p>
 
+    <p class="pr-meta" data-reveal data-i18n="pr.meta">ميتا بتدي كل رقم 1000 رسالة رد مجانية في الشهر، وبعدها رسائل واتساب بتتحاسب على حسابك مباشرة. إحنا مش بناخد عليها أي نسبة.</p>
     <div class="limits" data-reveal>
       <details>
         <summary><span data-i18n="pr.limits">الحدود بالأرقام والإضافات</span> <svg class="ic" aria-hidden="true"><use href="#i-down"/></svg></summary>
@@ -580,12 +650,77 @@
   </div>
 </section>
 
+<!-- ============ حاسبة التوفير ============ -->
+<section class="section calc-sec" id="calc">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <div class="eyebrow" data-i18n="calc.eyebrow">احسبها بأرقامك</div>
+      <h2 data-i18n="calc.title">الرسايل بتكلّفك كام في الشهر؟</h2>
+      <p data-i18n="calc.sub">حرّك الأرقام على حسب نشاطك، والحاسبة تقولك الوقت اللي بيرجع لفريقك، والمبيعات اللي ممكن ما تضيعش.</p>
+    </div>
+    <div class="calc" data-reveal>
+      <div class="calc-in">
+        <div class="calc-row">
+          <label for="c-orders"><span data-i18n="calc.l1">أوردرات أو حجوزات في الشهر</span><output id="o-orders" for="c-orders">600</output></label>
+          <input type="range" id="c-orders" min="100" max="3000" step="50" value="600">
+          <small data-i18n="calc.l1h">قد إيه بيوصلك على واتساب والرسائل</small>
+        </div>
+        <div class="calc-row">
+          <label for="c-min"><span data-i18n="calc.l2">دقايق الموظف على الأوردر الواحد</span><output id="o-min" for="c-min">8</output></label>
+          <input type="range" id="c-min" min="2" max="20" step="1" value="8">
+          <small data-i18n="calc.l2h">رد وأسئلة وتأكيد وحساب وتبليغ الفريق</small>
+        </div>
+        <div class="calc-row">
+          <label for="c-aov"><span data-i18n="calc.l3">متوسط قيمة الأوردر (ج)</span><output id="o-aov" for="c-aov">250</output></label>
+          <input type="range" id="c-aov" min="50" max="3000" step="50" value="250">
+          <small data-i18n="calc.l3h">الأوردر أو الحجز الواحد بيجيب كام</small>
+        </div>
+        <div class="calc-row">
+          <label for="c-lost"><span data-i18n="calc.l4">أوردرات بتضيع عشان الرد اتأخر (من كل 100)</span><output id="o-lost" for="c-lost">5</output></label>
+          <input type="range" id="c-lost" min="0" max="20" step="1" value="5">
+          <small data-i18n="calc.l4h">عميل سأل ومحدش رد في وقتها، فراح لغيرك</small>
+        </div>
+        <details class="calc-more">
+          <summary data-i18n="calc.more">اضبط الافتراضات</summary>
+        <div class="calc-row">
+          <label for="c-auto"><span data-i18n="calc.l5">نسبة الشغل اللي النظام يخلّصه لوحده (%)</span><output id="o-auto" for="c-auto">70</output></label>
+          <input type="range" id="c-auto" min="30" max="90" step="5" value="70">
+          <small data-i18n="calc.l5h">تقديرك؛ الباقي بيروح لفريقك</small>
+        </div>
+        <div class="calc-row">
+          <label for="c-sal"><span data-i18n="calc.l6">مرتب الموظف في الشهر (ج)</span><output id="o-sal" for="c-sal">7000</output></label>
+          <input type="range" id="c-sal" min="4000" max="25000" step="500" value="7000">
+          <small data-i18n="calc.l6h">عشان نحسب قيمة الساعات اللي بترجع</small>
+        </div>
+        </details>
+      </div>
+      <div class="calc-out" aria-live="polite">
+        <p class="calc-k" data-i18n="calc.r1">وقت بيرجع لفريقك كل شهر</p>
+        <p class="calc-big"><b id="r-hours">56</b> <span data-i18n="calc.hrs">ساعة</span></p>
+        <p class="calc-fte"><span data-i18n="calc.fte">يعادل وقت</span> <b id="r-fte">0.3</b> <span data-i18n="calc.fte2">موظف دوام كامل</span></p>
+        <dl class="calc-lines">
+          <div><dt data-i18n="calc.r2">قيمة الوقت ده</dt><dd id="r-time">1,885</dd></div>
+          <div><dt data-i18n="calc.r3">مبيعات ممكن ما تضيعش</dt><dd id="r-sales">7,500</dd></div>
+          <div class="tot"><dt data-i18n="calc.r4">قيمة تقديرية في الشهر</dt><dd id="r-total">9,385</dd></div>
+        </dl>
+        <div class="calc-plan">
+          <span data-i18n="calc.plan">الباقة المناسبة لحجمك</span>
+          <p><b id="r-plan">Grow</b> <span id="r-price">5,500</span></p>
+          <div class="calc-bars" id="r-bars" aria-hidden="true"><i class="v"></i><i class="p"></i><p class="calc-leg"><span class="v" data-i18n="calc.legV">القيمة التقديرية</span><span class="p" data-i18n="calc.legP">اشتراك الباقة</span></p></div>
+        </div>
+        <a class="btn btn-coral" href="#contact" id="r-cta" data-plan="launch" data-i18n="calc.cta">ابعتلنا أرقامك ونظبطها سوا</a>
+        <p class="calc-note" data-i18n="calc.note">أرقام تقديرية من اللي إنت دخلته، مش وعد بنتيجة. الشهر = 26 يوم × 8 ساعات.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ TRUST ============ -->
 <section class="section" id="trust">
   <div class="wrap">
     <div class="sec-head" data-reveal>
       <div class="eyebrow" data-i18n="tr.eyebrow">شفافية</div>
-      <h2 data-i18n="tr.title">بياناتك في أمان… وفلوسك لحسابك</h2>
+      <h2 data-i18n="tr.title">بياناتك وفلوسك لحسابك إنت</h2>
     </div>
     <div class="trust-grid">
       <article data-tilt3d class="trust" data-reveal><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg><h3 data-i18n="tr.1t">ملكك أنت</h3><p data-i18n="tr.1">بيانات عملائك ملكك. بتشتغل على حساب خاص بيك، والشيت ومفاتيح الربط محفوظة، ومحدّش بيوصلها غير فريق التشغيل.</p></article>
@@ -710,6 +845,7 @@
           <label class="chip-opt"><input type="checkbox" name="need" value="telegram"><span><svg class="ic" aria-hidden="true"><use href="#i-send"/></svg><b data-i18n="fm.n5">تنبيهات تليجرام للفريق</b></span></label>
           <label class="chip-opt"><input type="checkbox" name="need" value="dashboard"><span><svg class="ic" aria-hidden="true"><use href="#i-dash"/></svg><b data-i18n="fm.n6">لوحة تحكم وتقارير</b></span></label>
           <label class="chip-opt"><input type="checkbox" name="need" value="stock"><span><svg class="ic" aria-hidden="true"><use href="#i-box"/></svg><b data-i18n="fm.n7">مخزون وفروع</b></span></label>
+          <label class="chip-opt"><input type="checkbox" name="need" value="automation"><span><svg class="ic" aria-hidden="true"><use href="#i-zap"/></svg><b data-i18n="fm.nAuto">أتمتة الشغل الداخلي</b></span></label>
           <label class="chip-opt"><input type="checkbox" name="need" value="full"><span><svg class="ic" aria-hidden="true"><use href="#i-layers"/></svg><b data-i18n="fm.n8">النظام كامل</b></span></label>
           <label class="chip-opt"><input type="checkbox" name="need" value="unsure"><span><svg class="ic" aria-hidden="true"><use href="#i-help"/></svg><b data-i18n="fm.n9">مش متأكد · محتاج استشارة</b></span></label>
         </div>
@@ -754,7 +890,7 @@
 <footer class="footer">
   <div class="wrap foot-in">
     <img src="assets/brand/web/02_Horizontal_Logo_ForDark.webp" alt="ويّاك WIYAK Business Solutions" width="200" height="47" loading="lazy">
-    <nav data-i18n-attr="aria-label:ft.aria" aria-label="روابط الفوتر"><a href="index.html#features" data-i18n="nav.features">هتاخد إيه</a><a href="bot.html" data-i18n="nav.demo">شوف البوت</a><a href="clinic.html" data-i18n="ft.clinic">مثال العيادة</a><a href="pricing.html" data-i18n="nav.pricing">الأسعار</a><a href="faq.html" data-i18n="nav.faq">أسئلة</a><button type="button" class="foot-lang" data-lang-toggle data-i18n="lang.full">English</button></nav>
+    <nav data-i18n-attr="aria-label:ft.aria" aria-label="روابط الفوتر"><a href="index.html#features" data-i18n="nav.features">هتاخد إيه</a><a href="bot.html" data-i18n="nav.demo">شوف البوت</a><a href="clinic.html" data-i18n="ft.clinic">مثال العيادة</a><a href="index.html#pricing" data-i18n="nav.pricing">الأسعار</a><a href="faq.html" data-i18n="nav.faq">أسئلة</a><button type="button" class="foot-lang" data-lang-toggle data-i18n="lang.full">English</button></nav>
     <div class="foot-social">
       <a href="https://www.instagram.com/wiyakegy/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="ic" aria-hidden="true"><use href="#i-insta"/></svg></a>
       <a href="https://www.facebook.com/wiyakbusiesssolutions/" target="_blank" rel="noopener" aria-label="Facebook"><svg class="ic" aria-hidden="true" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
@@ -772,7 +908,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="i18n.js?v=14"></script>
-<script src="main.js?v=9"></script>
+<script src="i18n.js?v=20"></script>
+<script src="main.js?v=14"></script>
 </body>
 </html>

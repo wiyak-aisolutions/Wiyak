@@ -7,6 +7,7 @@
   const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const WA = '201101216597';
   const LEADS_HOOK = 'https://ahmadbadryy.duckdns.org/webhook/wiyak-website-lead';
+  const DEMO_HOOK = 'https://ahmadbadryy.duckdns.org/webhook/wiyak-demo-chat';
 
   /* ---------- i18n: Arabic is in the HTML, English comes from i18n.js ---------- */
   const AR = {}, AR_ATTR = {};
@@ -78,9 +79,9 @@
   addEventListener('scroll', () => { if (!ticking){ ticking = true; requestAnimationFrame(scrollFx); } }, {passive:true});
   addEventListener('resize', scrollFx);
 
-  /* arrow keys move between tabs (direction follows the page language) */
-  $$('[role=tablist]').forEach(list => list.addEventListener('keydown', e => {
-    const tabs = $$('[role=tab]', list), i = tabs.indexOf(document.activeElement);
+  /* arrow keys move between tabs and radio options (direction follows the page language) */
+  $$('[role=tablist],[role=radiogroup]').forEach(list => list.addEventListener('keydown', e => {
+    const tabs = $$('[role=tab],[role=radio]', list), i = tabs.indexOf(document.activeElement);
     if (i < 0) return;
     const rtl = document.documentElement.dir === 'rtl';
     const step = {ArrowRight: rtl ? -1 : 1, ArrowLeft: rtl ? 1 : -1}[e.key];
@@ -192,15 +193,83 @@
   /* demo tabs */
   const demoChat = $('#demo-chat'), demoTeam = $('#demo-team'), notes = $('#demo-notes');
   if (demoChat){
-  let demoTok = {dead:true}, demoStarted = false, demoKey = 'store';
+  let demoTok = {dead:true}, demoStarted = false, demoKey = 'live';
+  const phoneDemo = $('.phone-demo'), dForm = $('#demo-form'), dInput = $('#demo-input'), disclaim = $('#demo-disclaim'), bizPick = $('#biz-pick');
+
+  /* live demo: the visitor chats with a demo shop through n8n; the chat and cart stay in this tab */
+  const live = { sid: '', biz: 'sweets', hist: [], cart: {}, log: [], team: [], busy: false };
+  try { live.sid = sessionStorage.getItem('wiyak-demo-sid') || ''; } catch(e) {}
+  if (!live.sid){ live.sid = 'v' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8); try { sessionStorage.setItem('wiyak-demo-sid', live.sid); } catch(e) {} }
+  const clock = () => new Date().toLocaleTimeString('en-GB', {hour:'2-digit', minute:'2-digit'});
+  const toBottom = () => { demoChat.scrollTop = demoChat.scrollHeight; };
+  function liveTeam(a){
+    const s = T().scn.live;
+    if (a.type === 'order') return {title: s.orderT + a.id, rows: [...a.lines, a.fulfilment === 'delivery' ? `${s.deliv} · ${a.area}` : s.pick, `${a.payment} · ${a.total}`], btns: s.btns};
+    if (a.type === 'booking') return {icon: 'i-calendar', title: s.bookT + a.id, rows: [...a.lines, `${a.area} · ${a.slot}`, s.atClinic], btns: s.bbtns};
+    return {urgent: true, icon: 'i-users', title: s.handT, rows: [`${s.handR}«${a.last}»`], btns: s.hbtn};
+  }
+  function addTeam(a){ const el = teamMsg(liveTeam(a)); demoTeam.appendChild(el); pop(el); while (demoTeam.children.length > 4) demoTeam.firstElementChild.remove(); }
+  function renderLive(){
+    const s = T().scn.live.biz[live.biz];
+    $('#demo-name').textContent = s.name;
+    const hi = bubble({from:'bot', text:s.hello, time:''});
+    const chips = document.createElement('div'); chips.className = 'chips';
+    s.chips.forEach(c => { const b = document.createElement('button'); b.type = 'button'; b.textContent = c; b.addEventListener('click', () => sendLive(c)); chips.appendChild(b); });
+    hi.insertBefore(chips, hi.querySelector('small'));
+    demoChat.appendChild(hi);
+    live.log.forEach(m => demoChat.appendChild(bubble(m)));
+    live.team.forEach(a => demoTeam.appendChild(teamMsg(liveTeam(a))));
+    toBottom();
+  }
+  async function sendLive(text){
+    text = String(text).trim().slice(0, 300);
+    if (!text || live.busy) return;
+    live.busy = true; dInput.value = ''; dForm.querySelector('button').disabled = true;
+    const me = {from:'me', text, time:clock()}; live.log.push(me);
+    const meEl = bubble(me); demoChat.appendChild(meEl); pop(meEl);
+    const ty = document.createElement('div'); ty.className = 'typing'; ty.innerHTML = '<i></i><i></i><i></i>';
+    demoChat.appendChild(ty); toBottom();
+    let r = null;
+    const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), 30000); // never leave the typing dots up forever
+    try {
+      const res = await fetch(DEMO_HOOK, {method:'POST', headers:{'Content-Type':'application/json'}, signal:ctl.signal,
+        body: JSON.stringify({sid:live.sid, biz:live.biz, lang, msg:text, history:live.hist.slice(-10), cart:live.cart})});
+      if (res.ok) r = await res.json();
+    } catch(e) {}
+    clearTimeout(timer);
+    ty.remove();
+    const reply = r && r.reply ? r.reply : T().scn.live.err;
+    const bot = {from:'bot', text:reply, time:clock()}; live.log.push(bot);
+    if (demoKey === 'live'){ const el = bubble(bot); demoChat.appendChild(el); pop(el); }
+    if (r){
+      live.hist.push({r:'u', t:text}, {r:'b', t:reply}); live.hist = live.hist.slice(-12);
+      live.cart = r.cart || live.cart;
+      if (r.alert){ live.team.push(r.alert); live.team = live.team.slice(-4); if (demoKey === 'live') addTeam(r.alert); }
+    }
+    live.log = live.log.slice(-30);
+    live.busy = false; dForm.querySelector('button').disabled = false;
+    if (demoKey === 'live'){ toBottom(); dInput.focus({preventScroll:true}); }
+  }
+  dForm.addEventListener('submit', e => { e.preventDefault(); sendLive(dInput.value); });
+  // switching the demo business starts a fresh conversation
+  $$('#biz-pick [data-biz]').forEach(btn => btn.addEventListener('click', () => {
+    if (live.busy || btn.dataset.biz === live.biz) return;
+    $$('#biz-pick [data-biz]').forEach(x => x.setAttribute('aria-checked', String(x === btn)));
+    Object.assign(live, { biz: btn.dataset.biz, hist: [], cart: {}, log: [], team: [] });
+    demoChat.innerHTML = ''; demoTeam.innerHTML = '';
+    renderLive();
+  }));
+
   function runScn(key){
     demoTok.dead = true; demoTok = {}; demoKey = key;
+    const isLive = key === 'live';
+    phoneDemo.classList.toggle('live', isLive); dForm.hidden = !isLive; disclaim.hidden = !isLive; bizPick.hidden = !isLive;
     const s = T().scn[key];
-    $('#demo-name').textContent = s.name;
+    $('#demo-name').textContent = isLive ? s.biz[live.biz].name : s.name;
     demoTeam.dataset.empty = T().empty;
     demoChat.innerHTML = ''; demoTeam.innerHTML = '';
     notes.innerHTML = s.notes.map(([b,t]) => `<li><b>${esc(b)}</b>${esc(t)}</li>`).join('');
-    play(demoChat, demoTeam, s.script, demoTok);
+    if (isLive) renderLive(); else play(demoChat, demoTeam, s.script, demoTok);
   }
   $$('.tab').forEach(t => t.addEventListener('click', () => {
     if (t.getAttribute('aria-selected') === 'true' && demoStarted) return;
@@ -208,9 +277,9 @@
     demoStarted = true; runScn(t.dataset.scn);
   }));
   demoTeam.dataset.empty = T().empty;
-  $('#demo-name').textContent = T().scn.store.name;
-  new IntersectionObserver(([e], o) => { if (e.isIntersecting){ demoStarted = true; runScn('store'); o.disconnect(); } }, {threshold:.35}).observe($('#demo'));
-  langHooks.push(() => { if (demoStarted) runScn(demoKey); else { demoTeam.dataset.empty = T().empty; $('#demo-name').textContent = T().scn.store.name; } });
+  $('#demo-name').textContent = T().scn.live.biz[live.biz].name;
+  new IntersectionObserver(([e], o) => { if (e.isIntersecting){ demoStarted = true; runScn(demoKey); o.disconnect(); } }, {threshold:.35}).observe($('#demo'));
+  langHooks.push(() => { if (demoStarted) runScn(demoKey); else { demoTeam.dataset.empty = T().empty; $('#demo-name').textContent = T().scn.live.biz[live.biz].name; } });
   }
 
   /* ---------- Dashboard tabs ---------- */
@@ -247,11 +316,41 @@
     });
   });
 
+  /* ---------- Savings calculator ---------- */
+  const calc = $('#calc');
+  if (calc){
+    const v = id => +$('#c-' + id).value, fmt = n => Math.round(n).toLocaleString('en-US');
+    const HOURS_PER_MONTH = 26 * 8;
+    const run = () => {
+      $$('.calc input[type=range]').forEach(r => {
+        r.style.setProperty('--p', (r.value - r.min) / (r.max - r.min) * 100 + '%');
+        $('#o-' + r.id.slice(2)).textContent = (+r.value).toLocaleString('en-US');
+      });
+      const orders = v('orders'), hours = orders * v('min') * v('auto') / 100 / 60;
+      const time = hours * v('sal') / HOURS_PER_MONTH, sales = orders * v('lost') / 100 * v('aov'), total = time + sales;
+      $('#r-hours').textContent = fmt(hours);
+      $('#r-fte').textContent = (hours / HOURS_PER_MONTH).toFixed(1);
+      const cur = ' ' + (tr('cur') || 'ج');
+      $('#r-time').textContent = fmt(time) + cur; $('#r-sales').textContent = fmt(sales) + cur; $('#r-total').textContent = fmt(total) + cur;
+      // plan by monthly orders, same caps as the plan cards
+      const plan = orders <= 500 ? ['Connect', 3500, 'start'] : orders <= 1000 ? ['Grow', 5500, 'launch'] : ['Partner', 0, 'custom'];
+      $('#r-plan').textContent = plan[0];
+      $('#r-price').textContent = plan[1] ? fmt(plan[1]) + ' ' + tr('pr.per') : tr('pr.quote');
+      $('#r-cta').dataset.plan = plan[2];
+      const bars = $('#r-bars'), top = Math.max(total, plan[1]);
+      bars.hidden = !plan[1] || !top;
+      if (!bars.hidden){ bars.querySelector('i.v').style.setProperty('--w', total / top * 100 + '%'); bars.querySelector('i.p').style.setProperty('--w', plan[1] / top * 100 + '%'); }
+    };
+    $$('.calc input[type=range]').forEach(r => r.addEventListener('input', run));
+    run(); langHooks.push(run);
+  }
+
   /* ---------- Lead form → WhatsApp ---------- */
   const form = $('#lead-form'), done = $('#lead-done');
   const ind = $('#f-ind'), otherWrap = $('#other-wrap');
   ind.addEventListener('change', () => { otherWrap.hidden = ind.value !== 'other'; });
   $$('[data-plan]').forEach(a => a.addEventListener('click', () => { $('#f-plan').value = a.dataset.plan; }));
+  $$('[data-need]').forEach(a => a.addEventListener('click', () => { const c = $(`input[name=need][value="${a.dataset.need}"]`); if (c){ c.checked = true; setErr(null, 'e-need', false); } }));
   $$('[data-ind]').forEach(a => a.addEventListener('click', () => { ind.value = a.dataset.ind; ind.dispatchEvent(new Event('change')); setErr(ind, 'e-ind', false); }));
 
   const digits = s => s.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d));

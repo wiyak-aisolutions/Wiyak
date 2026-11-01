@@ -10,11 +10,10 @@ import re
 SRC = '_src/site.html'
 PAGES = {
     # file: (page id, Arabic <title>, sections in order)
-    'index.html':     ('home',      'ويّاك | حلول أعمال ذكية على مقاس نشاطك', ['top', 'why', 'features', 'industries', 'setup', 'contact']),
+    'index.html':     ('home',      'ويّاك | حلول أعمال ذكية على مقاس نشاطك', ['top', 'assure', 'why', 'features', 'industries', 'demo', 'pricing', 'calc', 'solutions', 'setup', 'contact']),
     'bot.html':       ('bot',       'شوف البوت شغال | ويّاك',                 ['demo', 'journey', 'contact']),
     'dashboard.html': ('dashboard', 'لوحة التحكم | ويّاك',                     ['dashboard', 'contact']),
     'clinic.html':    ('clinic',    'مثال العيادة بالتفصيل | ويّاك',           ['clinic', 'contact']),
-    'pricing.html':   ('pricing',   'الباقات والأسعار | ويّاك',                ['pricing', 'contact']),
     'faq.html':       ('faq',       'أسئلة وشفافية | ويّاك',                   ['faq', 'trust', 'contact']),
 }
 
@@ -36,6 +35,8 @@ for file, (pid, title, secs) in PAGES.items():
     h = re.sub(r'<title>[^<]*</title>', f'<title>{title}</title>', head)
     h = h.replace('<body data-page="home">', f'<body data-page="{pid}">')
     page = h + '\n\n' + '\n\n'.join(blocks[s] for s in secs) + '\n' + tail
+    if pid != 'home':  # the page's first section heading is its <h1>
+        page = re.sub(r'<h2\b(.*?)</h2>', r'<h1\1</h1>', page, count=1, flags=re.S)
     if pid == 'home':  # same-page links stay as in-page jumps
         page = page.replace('href="index.html#', 'href="#').replace('href="index.html" class="nav-logo"', 'href="#top" class="nav-logo"')
     open(file, 'w', encoding='utf-8').write(page)
